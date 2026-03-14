@@ -1,0 +1,27 @@
+[package]
+name = "bolo-docs"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[package.metadata.cargo-machete]
+ignored = ["bolo-blobs", "iroh-gossip", "loro", "thiserror", "tracing"]
+
+[dependencies]
+bolo-core = { workspace = true }
+bolo-blobs = { workspace = true }
+loro = { workspace = true }
+iroh-gossip = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
+tokio = { workspace = true, features = ["full"] }
+iroh = { workspace = true }
+iroh-gossip = { workspace = true }
+futures-lite = { workspace = true }
+loro = { workspace = true }

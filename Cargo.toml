@@ -1,0 +1,90 @@
+[workspace]
+members = [
+    "bolo-types",
+    "bolo-core",
+    "bolo-blobs",
+    "bolo-docs",
+    "bolo-pub",
+    "bolo-relay",
+    "bolo-git",
+    "bolo-ci",
+    "bolo-task",
+    "bolo-chat",
+    "bolo-cli",
+    "bolo-mcp",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+rust-version = "1.83"
+
+[workspace.dependencies]
+# Iroh ecosystem
+iroh = { version = "0.96.1", features = ["address-lookup-mdns"] }
+iroh-blobs = "0.98.0"
+iroh-gossip = "0.96.0"
+iroh-relay = "0.96.1"
+
+# CRDTs
+loro = "1.10.3"
+
+# Binary data
+bytes = "1"
+
+# Crypto & hashing
+blake3 = "1"
+chacha20poly1305 = "0.10"
+rand = "0.9"
+
+# Git
+git2 = "0.20"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+futures-lite = "2"
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+thiserror = "2"
+anyhow = "1"
+
+# Archive
+flate2 = "1"
+tar = "0.4"
+
+# Terminal rendering
+termimad = "0.30"
+similar = "2"
+
+# System info
+sysinfo = "0.34"
+
+# Filesystem
+dirs = "6"
+tempfile = "3"
+
+# Internal crates
+bolo-types = { path = "bolo-types" }
+bolo-core = { path = "bolo-core" }
+bolo-blobs = { path = "bolo-blobs" }
+bolo-docs = { path = "bolo-docs" }
+bolo-pub = { path = "bolo-pub" }
+bolo-git = { path = "bolo-git" }
+bolo-relay = { path = "bolo-relay" }
+bolo-ci = { path = "bolo-ci" }
+bolo-task = { path = "bolo-task" }
+bolo-chat = { path = "bolo-chat" }
+bolo-mcp = { path = "bolo-mcp" }

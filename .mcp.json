@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "bolo": {
+      "command": "./target/release/bolo",
+      "args": ["mcp", "start"],
+      "env": {}
+    }
+  }
+}
