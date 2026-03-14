@@ -38,8 +38,8 @@ blake3 = "1"
 chacha20poly1305 = "0.10"
 rand = "0.9"
 
-# Git
-git2 = "0.20"
+# Git — vendored libgit2, no SSH/HTTPS (local repos only, avoids system openssl for cross-compile)
+git2 = { version = "0.20", default-features = false, features = ["vendored-libgit2"] }
 
 # Serialization
 serde = { version = "1", features = ["derive"] }

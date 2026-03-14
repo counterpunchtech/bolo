@@ -829,10 +829,16 @@ enum MeshCmd {
     },
 }
 
-fn init_tracing(verbose: bool, log_file: Option<std::path::PathBuf>) {
+fn init_tracing(verbose: bool, is_daemon: bool, log_file: Option<std::path::PathBuf>) {
     use tracing_subscriber::{fmt, prelude::*, EnvFilter};
 
-    let default = if verbose { "debug" } else { "warn" };
+    let default = if verbose {
+        "debug"
+    } else if is_daemon {
+        "info"
+    } else {
+        "warn"
+    };
     let filter = EnvFilter::try_from_env("BOLO_LOG").unwrap_or_else(|_| EnvFilter::new(default));
 
     let stderr_layer = fmt::layer().with_target(false).with_writer(std::io::stderr);
@@ -876,7 +882,13 @@ async fn main() -> anyhow::Result<()> {
     } else {
         None
     };
-    init_tracing(cli.verbose, log_file);
+    let is_daemon = matches!(
+        &cli.command,
+        Commands::Daemon {
+            command: DaemonCmd::Start { .. }
+        }
+    );
+    init_tracing(cli.verbose, is_daemon, log_file);
 
     match cli.command {
         Commands::Daemon { command } => match command {
